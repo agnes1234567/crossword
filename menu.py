@@ -7,13 +7,16 @@ class Menu:
         self.x = x
         self.y = y
         
-        div = MENU_WIDTH // 9
-        self.new_game_button = pygame.Rect(x + div//2, y + MENU_HEIGHT // 3, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
-        self.check_button = pygame.Rect(x + MENU_BUTTON_WIDTH + div,
-                                        y + MENU_HEIGHT // 3, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
-        self.help_button = pygame.Rect(x + MENU_BUTTON_WIDTH * 2  + div * 2,
-                                        y + MENU_HEIGHT // 3, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
-        self.exit_button = pygame.Rect(x + div*7, y + MENU_HEIGHT // 3, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
+        div = MENU_HEIGHT // 9
+        center = MENU_WIDTH // 2 - MENU_BUTTON_WIDTH // 2
+        self.new_game_button = pygame.Rect(center,
+                                           div, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
+        self.check_button = pygame.Rect(center,
+                                        div*2, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
+        self.help_button = pygame.Rect(center,
+                                        div*3, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
+        self.exit_button = pygame.Rect(center,
+                                       div*4, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
         
         self.font = pygame.font.SysFont("menlo", MENU_FONT_SIZE)
         

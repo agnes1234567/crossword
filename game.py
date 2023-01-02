@@ -1,6 +1,6 @@
 import pygame
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME, STATES, OFFSET, \
-    BOARD_SIZE, MENU_HEIGHT, BOARD_WIDTH, BOARD_HEIGHT, BUTTONS
+    BOARD_SIZE, MENU_HEIGHT, BOARD_WIDTH, BOARD_HEIGHT, BUTTONS, MENU_WIDTH
 from menu import Menu
 from board import Board
 
@@ -9,8 +9,8 @@ class Game:
         pygame.init()
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption(GAME_NAME)
-        self.menu = Menu(self.screen, 0, WINDOW_HEIGHT - MENU_HEIGHT + OFFSET)
-        self.board = Board(self.screen,0,0)
+        self.menu = Menu(self.screen, 0, 0)
+        self.board = Board(self.screen,MENU_WIDTH,0)
         self.state = STATES.START
         self.running = True
     

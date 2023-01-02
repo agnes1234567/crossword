@@ -2,6 +2,7 @@ from constants import BOARD_SIZE, WINDOW_WIDTH, WINDOW_HEIGHT, MENU_HEIGHT, OFFS
 import pygame
 from puzzle_generator import Puzzle_generator
 import math
+import random
 
 class Board:
     def __init__(self, screen, x, y):
@@ -44,7 +45,7 @@ class Board:
                             font = pygame.font.SysFont("menlo", 10)
                             direction = text[-3:]
                             text = text[:-3]
-                            text_rows = [(text[i:i+6] + '-') for i in range(0, len(text), 6)]
+                            text_rows = [(text[i:i+7] + '-') for i in range(0, len(text), 7)]
                             if text_rows[-1][-1] == '-':
                                 text_rows[-1] = text_rows[-1][:-1]
                             text_rows.append(direction)
@@ -91,11 +92,12 @@ class Board:
 
     def help(self):
         if self.solution:
-            for i in range(BOARD_SIZE):
-                for j in range(BOARD_SIZE):
-                    if self.grid[i][j] == '' and self.solution[i][j] != '_':
-                        self.grid[i][j] = self.solution[i][j]
-                        return True
+            left = [(i, j) for i in range(BOARD_SIZE) for j in range(BOARD_SIZE) if self.grid[i][j] == '' and self.solution[i][j] != '_']
+            if len(left) == 0:
+                return False
+            rand_index = random.randint(0, len(left) - 1)
+            self.grid[left[rand_index][0]][left[rand_index][1]] = self.solution[left[rand_index][0]][left[rand_index][1]]
+            return True
         return False
     
     def key_pressed(self, key):
